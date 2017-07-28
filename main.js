@@ -3,7 +3,7 @@
 */
 
 // 1. First select and store the elements you'll be working with
-let term = document.getElementById('term').value
+let thing = document.getElementById('term')
 
 // 2. Create your `submit` event for getting the user's search term
 
@@ -15,7 +15,7 @@ let result = document.getElementById('results')
 
 // 3. Create your `fetch` request that is called after a submission
 submit.addEventListener("click", function(){
-  fetch("https://itunes.apple.com/search?term=term")
+  fetch(`https://itunes.apple.com/search?term=${thing.value}`)
   .then(
     function(response) {
  // We process the response accordingly.
@@ -29,7 +29,11 @@ submit.addEventListener("click", function(){
 
         for (let i = 0; i < 20; i++) {
           results.innerHTML +=`
-          <section class="instance"><h1>${data.results[i].artistName}</h1></section>`
+          <button type="button" class="instance" onclick="songPlay()"><h2>${data.results[i].artistName}</h2><div id="albumArt">
+<img src="${data.results[i].artworkUrl60}" alt=""/><h3>${data.results[i].trackName}</h3>;
+          </div></button>`;
+          let songPlay = document.querySelector('audio').setAttribute('src', `${data.results[i].previewUrl}`);
+
 
 
                 }
@@ -41,10 +45,6 @@ submit.addEventListener("click", function(){
            .catch(function(err) {
             console.log("Fetch Error :-S", err);
            });});
-
-
-
-
 
 
 // let entity="allArtist&attribute=allArtistTerm"
