@@ -3,18 +3,19 @@
 */
 
 // 1. First select and store the elements you'll be working with
-let searchbar = document.getElementById('seachbar').value
+let term = document.getElementById('term').value
 
 // 2. Create your `submit` event for getting the user's search term
 
 let submit = document.querySelector('#submit')
 
-let results = document.getElementById('results')
-
+let result = document.getElementById('results')
+// let searchURL = ''
+// let doTheSearch(searchit)=>{searchURL + searchbar.value};
 
 // 3. Create your `fetch` request that is called after a submission
 submit.addEventListener("click", function(){
-  fetch("https://itunes.apple.com/search?term=searchbar")
+  fetch("https://itunes.apple.com/search?term=term")
   .then(
     function(response) {
  // We process the response accordingly.
@@ -28,7 +29,7 @@ submit.addEventListener("click", function(){
 
         for (let i = 0; i < 20; i++) {
           results.innerHTML +=`
-          <section class="instance">${searchResult}</section>`
+          <section class="instance"><h1>${data.results[i].artistName}</h1></section>`
 
 
                 }
