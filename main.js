@@ -3,22 +3,22 @@
 */
 
 // 1. First select and store the elements you'll be working with
-let thing = document.getElementById('term')
+let term = document.getElementById('term')
+let selectSong = document.getElementsByClassName('instance')
+let playSong = document.querySelector('audio')
 
 // 2. Create your `submit` event for getting the user's search term
 
 let submit = document.querySelector('#submit')
 
 let result = document.getElementById('results')
-// let searchURL = ''
-// let doTheSearch(searchit)=>{searchURL + searchbar.value};
-
 // 3. Create your `fetch` request that is called after a submission
 submit.addEventListener("click", function(){
-  fetch(`https://itunes.apple.com/search?term=${thing.value}`)
+  fetch(`https://itunes.apple.com/search?term=${term.value}`)
   .then(
     function(response) {
  // We process the response accordingly.
+
 
  if (response.status !== 200) {
  console.log(response.status)
@@ -29,10 +29,11 @@ submit.addEventListener("click", function(){
 
         for (let i = 0; i < 20; i++) {
           results.innerHTML +=`
-          <button type="button" class="instance" onclick="songPlay()"><h2>${data.results[i].artistName}</h2><div id="albumArt">
-<img src="${data.results[i].artworkUrl60}" alt=""/><h3>${data.results[i].trackName}</h3>;
+          <button type="button" class="instance"><h2>${data.results[i].artistName}</h2><div id="albumArt">
+<img src="${data.results[i].artworkUrl60}" alt=""/><h3>${data.results[i].trackName}</h3>
           </div></button>`;
-          let songPlay = document.querySelector('audio').setAttribute('src', `${data.results[i].previewUrl}`);
+          playSong.setAttribute('src', `${data.results[i].previewUrl}`)
+
 
 
 
