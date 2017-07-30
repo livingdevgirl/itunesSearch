@@ -3,22 +3,31 @@
 */
 
 // 1. First select and store the elements you'll be working with
-let term = document.getElementById('term')
-let selectSong = document.getElementsByClassName('instance')
-let playSong = document.querySelector('audio')
+let thing = document.getElementById('term')
+
+let audio = document.getElementById('audio');
+
+let songs = document.getElementsByClassName('song');
+
+function selectSong(){
+  audio.setAttribute('src', `songUrl`)
+};
 
 // 2. Create your `submit` event for getting the user's search term
 
-let submit = document.querySelector('#submit')
+let submit = document.getElementById('submit');
 
-let result = document.getElementById('results')
+let result = document.getElementById('results');
+
+
+// let doTheSearch(searchit)=>{searchURL + searchbar.value};
+
 // 3. Create your `fetch` request that is called after a submission
 submit.addEventListener("click", function(){
-  fetch(`https://itunes.apple.com/search?term=${term.value}`)
+  fetch(`https://itunes.apple.com/search?term=${thing.value}`)
   .then(
     function(response) {
  // We process the response accordingly.
-
 
  if (response.status !== 200) {
  console.log(response.status)
@@ -27,13 +36,12 @@ submit.addEventListener("click", function(){
         console.log("Here is the data:", data);
         console.log(data.results)
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
           results.innerHTML +=`
-          <button type="button" class="instance"><h2>${data.results[i].artistName}</h2><div id="albumArt">
-<img src="${data.results[i].artworkUrl60}" alt=""/><h3>${data.results[i].trackName}</h3>
-          </div></button>`;
-          playSong.setAttribute('src', `${data.results[i].previewUrl}`)
-
+          <button class="song" type="button"><h2>${data.results[i].artistName}</h2><div id="albumArt">
+<img src="${data.results[i].artworkUrl100}" alt=""/><h3>${data.results[i].trackName}</h3>
+          </button>`;
+          audio.setAttribute('src', `${data.results[i].previewUrl}`)
 
 
 
@@ -48,20 +56,6 @@ submit.addEventListener("click", function(){
            });});
 
 
-// let entity="allArtist&attribute=allArtistTerm"
-//
-// audio.setAttribute('src', "https://.../search?term=serachbar&wsSearchCB)
-//
-// fetch https://itunes.apple.com/search?=term&country&callback
-//
-// fetch(`https://itunes.apple.com/search?term=${searchbar.value}`)
-//   .then(function(response) {
-//         console.log(data)
-//   })
-// audio.setAttribute('src', "https://.../search?parameterkeyvalue&callback="{selectSong}"")
-//
-// });
-//https://itunes.apple.com/search?term=jack+johnson
 
 // 4. Create a way to append the fetch results to your page
 
