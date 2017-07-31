@@ -38,12 +38,12 @@ submit.addEventListener("click", function(){
 
         for (let i = 0; i < 50; i++) {
           results.innerHTML +=`
-<button class="song" type="button">
 <a href="${data.results[i].previewUrl}">
+<button class="song" type="button">
 <h2>${data.results[i].artistName}</h2>
 <div id="albumArt">
 <img src="${data.results[i].artworkUrl100}" alt=""/><h3>${data.results[i].trackName}</h3>
-          </a></button>`;
+          </button></a>`;
           // audio.setAttribute('src', `${data.results[i].previewUrl}`)
           let songs = document.querySelectorAll('.results a')
 
@@ -52,6 +52,7 @@ submit.addEventListener("click", function(){
                 event.preventDefault();
                 let url = listen.getAttribute("href");
                 document.querySelector('audio').setAttribute('src',url);
+
 
 })});
               }
