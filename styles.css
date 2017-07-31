@@ -23,6 +23,10 @@ h3{
   text-decoration: overline;
 }
 
+a{
+  text-decoration: none;
+}
+
 .search{
   display:flex;
   justify-content: center;
